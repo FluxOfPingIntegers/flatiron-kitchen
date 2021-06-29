@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
   
       def create
         recipe = Recipe.create(recipe_params)
-        binding.pry
+
         redirect_to recipe
       end
   
@@ -35,8 +35,7 @@ class RecipesController < ApplicationController
   
       
       def recipe_params
-        params[:recipe][:ingredient_ids] = params[:recipe][:ingredient_ids].select {|i| !i.empty?}
-        params.require(:recipe).permit(:name, :ingredient_ids)
+        params.require(:recipe).permit(:name, ingredient_ids: [])
       end
   
 end
